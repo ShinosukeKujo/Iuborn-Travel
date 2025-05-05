@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Tin tức du lịch - Iuborn Travel</title>
+  <link rel="stylesheet" href="libs/bootstrap/css/bootstrap.min.css">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    .card-img-top {
+      object-fit: cover;
+      height: 200px;
+    }
+    .card-body {
+      padding: 1rem;
+    }
+    .card-title {
+      font-size: 1.25rem;
+    }
+    .card-text {
+      font-size: 1rem;
+    }
+    .btn {
+      width: 100%;
+      margin-top: 1rem;
+    }
+  </style>
+</head>
+<body>
+  <!-- Header -->
+  <header class="bg-light shadow-sm p-3 mb-4">
+    <div class="container d-flex justify-content-between align-items-center flex-wrap">
+        <h1 class="h3 text-primary mb-2 mb-md-0" id="titleheader">🌍 Iuborn Travel</h1>
+        <nav class="d-flex align-items-center flex-wrap">
+            <ul class="nav" id="mainNav">
+                <li class="nav-item"><a class="nav-link" href="index.html">Trang chủ</a></li>
+                <li class="nav-item"><a class="nav-link" href="tours.html">Tour</a></li>
+                <li class="nav-item"><a class="nav-link" href="news.html">Tin tức</a></li>
+                <li class="nav-item"><a class="nav-link" href="about.html">Giới thiệu</a></li>
+                <li class="nav-item" id="registerNav"><a class="nav-link" href="register.html">Đăng ký</a></li>
+            </ul>
+            <div id="userGreeting" class="ms-3 d-none d-flex align-items-center flex-wrap gap-2">
+                <strong id="usernameDisplay" style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 100px;"></strong>
+                <a href="payment.html" id="cartLink" class="text-decoration-none" style="margin-left: 10px;">
+                    Giỏ hàng (<span id="cartItemCount">0</span>)
+                </a>
+                <span id="separator" class="d-none">|</span>
+                <a href="#" id="logoutBtn" class="text-danger text-decoration-none" style="white-space: nowrap; margin-left: 10px;">Đăng xuất</a>
+            </div>
+        </nav>
+    </div>
+</header>
+
+  <!-- Main Content -->
+  <main class="container">
+    <h2 class="text-center mb-4">Tin tức du lịch mới nhất</h2>
+    <div id="newsList" class="row row-cols-1 row-cols-md-3 g-4">
+      <!-- Tin tức sẽ hiển thị ở đây -->
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="bg-dark text-light p-4 mt-auto">
+    <div class="container text-center">
+      <p>© 2025 Iuborn Travel.</p>
+      <p><a href="sitemap.html" class="text-light">Sitemap</a> | <a href="about.html" class="text-light">Liên hệ</a></p>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="libs/jquery/jquery.min.js"></script>
+  <script src="libs/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="libs/jquery/updateHeaderAuth.js"></script>
+  <script>
+    window.addEventListener("DOMContentLoaded", function () {
+      const newsDt = [
+        {
+          id: 1,
+          title: "Khám phá đảo Rồng - Viên ngọc ẩn mình",
+          img: "../img/roland-sanchez-dragon-island.jpg",
+          description: "Đảo Rồng đang là điểm đến hot nhất mùa hè này. Hãy cùng khám phá..."
+        },
+        {
+          id: 2,
+          title: "5 mẹo du lịch tiết kiệm mùa cao điểm",
+          img: "../img/istockphoto-1133825734-612x612.jpg",
+          description: "Đi du lịch tiết kiệm không khó, chỉ cần bạn biết cách lên kế hoạch..."
+        },
+        {
+          id: 3,
+          title: "Du lịch Iuborn: Ẩm thực và văn hóa đặc sắc",
+          img: "../img/7353c039-b0f0-4add-8f32-fec9761aeca9.jpg",
+          description: "Iuborn không chỉ đẹp mà còn có nền ẩm thực rất phong phú..."
+        }
+      ];
+
+      const newsListContainer = document.getElementById("newsList");
+
+      newsDt.forEach(news => {
+        const col = document.createElement("div");
+        col.classList.add("col");
+
+        col.innerHTML = `
+          <div class="card h-100 shadow-sm">
+            <img src="${news.img}" class="card-img-top" alt="${news.title}">
+            <div class="card-body">
+              <h5 class="card-title">${news.title}</h5>
+              <p class="card-text">${news.description.substring(0, 100)}...</p>
+              <a href="news-detail.html?id=${news.id}" class="btn btn-primary">Xem thêm</a>
+            </div>
+          </div>
+        `;
+
+        newsListContainer.appendChild(col);
+      });
+    });
+  </script>
+</body>
+</html>

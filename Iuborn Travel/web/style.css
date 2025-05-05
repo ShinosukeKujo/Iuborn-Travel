@@ -1,0 +1,180 @@
+/* Đảm bảo .intro-text và .search-box nằm cùng hàng */
+.row {
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;  /* Khoảng cách giữa các phần tử trong dòng */
+  flex-wrap: wrap;  /* Cho phép phần tử gói lại khi không đủ không gian */
+}
+#titleheader{
+  font-size: 2em;
+  font-weight: bold;
+  margin-bottom: 20px; /* Khoảng cách dưới tiêu đề */
+}
+#usernameDisplay {
+  color: #431ee9; /* Ví dụ: hồng đậm */
+  font-weight: bold;
+}
+.intro-text {
+  flex: 1;  /* Chiếm không gian còn lại */
+  padding: 20px;
+  background-color: #f9f9f9;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  min-width: 300px;  /* Đặt chiều rộng tối thiểu */
+}
+#cartLink {
+  margin-left: 15px; /* Tăng khoảng cách */
+  }
+  #cartLing a {
+      text-decoration: none; /* Bỏ gạch chân */
+      color: #e92f1e; /* Màu sắc cho icon giỏ hàng */
+  }
+  #cartLink i {
+      font-size: 1.2em; /* Điều chỉnh kích thước icon giỏ hàng */
+  }
+  #usernameDisplay {
+    margin-right: 10px;
+  }
+
+  /* Hoặc */
+
+  #logoutBtn {
+    margin-left: 10px;
+  }
+.search-box {
+  flex: 1; /* Cũng chiếm không gian còn lại */
+  min-width: 300px;  /* Đặt chiều rộng tối thiểu */
+}
+
+.search-box form {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.search-box input {
+  padding: 8px;
+  flex: 1;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.search-box button {
+  padding: 8px 16px;
+  background-color: #28a745;
+  border: none;
+  color: white;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.search-box button:hover {
+  background-color: #218838;
+}
+
+/* Cải tiến cho Header */
+header {
+  background-color: #f8f9fa;
+  padding: 20px 0;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+header .container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+/* Menu điều hướng */
+.nav-item a {
+  color: #495057;
+  padding: 10px 15px;
+  text-decoration: none;
+  border-radius: 4px;
+  transition: background-color 0.3s;
+}
+
+.nav-item a:hover {
+  background-color: #e9ecef;
+  color: #007bff;
+}
+
+/* Footer */
+footer {
+  background-color: #343a40;
+  color: white;
+  padding: 20px 0;
+}
+
+footer a {
+  color: #f8f9fa;
+  text-decoration: none;
+  transition: color 0.3s;
+}
+
+footer a:hover {
+  color: #ffc107;
+  text-decoration: underline;
+}
+
+/* Sửa Layout cho Form Đăng nhập */
+#loginCard {
+  background-color: #ffffff;
+  border-radius: 8px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+#loginForm input {
+  margin-bottom: 10px;
+}
+
+#loginForm button {
+  background-color: #007bff;
+  border-radius: 4px;
+  padding: 10px;
+  color: white;
+  cursor: pointer;
+}
+
+#loginForm button:hover {
+  background-color: #0056b3;
+}
+
+/* Modal Chào mừng */
+.modal-content {
+  border-radius: 8px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.modal-header {
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
+}
+
+.modal-footer button {
+  border-radius: 4px;
+}
+
+/* Cải thiện responsive */
+@media (max-width: 768px) {
+  .row {
+    flex-direction: column;  /* Chuyển sang cột khi màn hình nhỏ */
+    align-items: center;
+  }
+
+  .intro-text,
+  .search-box {
+    margin-right: 0;
+    margin-bottom: 20px;  /* Khoảng cách dưới khi màn hình nhỏ */
+    width: 100%;  /* Đảm bảo chiếm toàn bộ chiều rộng trong màn hình nhỏ */
+  }
+
+  .search-box form {
+    width: 100%;
+  }
+
+  .search-box input, .search-box button {
+    width: 100%;  /* Đảm bảo input và button chiếm toàn bộ chiều rộng */
+  }
+}

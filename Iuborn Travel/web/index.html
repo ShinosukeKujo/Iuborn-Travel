@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Trang chủ - Tour Du Lịch Iuborn</title>
+  <link rel="stylesheet" href="libs/bootstrap/css/bootstrap.min.css" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<style>
+  /* Custom styles for the search suggestions */
+  #searchResults {
+    position: absolute;
+    z-index: 1000; /* Đảm bảo hiển thị lên trên */
+    top: 100%;     /* Hiển thị ngay bên dưới input */
+    left: 0;
+    right: 0;
+    background-color: white;
+    border: 1px solid #ddd;
+    max-height: 200px;
+    overflow-y: auto;
+    display: none;
+    border-top: none; /* Gọn hơn khi áp sát input */
+  }
+  
+  #searchResults a {
+    padding: 10px;
+    display: block;
+    text-decoration: none;
+    color: black;
+  }
+  #searchResults a:hover {
+    background-color: #f1f1f1;
+  }
+</style>
+<body>
+  <!-- Header -->
+  <header class="bg-light shadow-sm p-3 mb-4">
+    <div class="container d-flex justify-content-between align-items-center flex-wrap">
+        <h1 class="h3 text-primary mb-2 mb-md-0" id="titleheader">🌍 Iuborn Travel</h1>
+        <nav class="d-flex align-items-center flex-wrap">
+            <ul class="nav" id="mainNav">
+                <li class="nav-item"><a class="nav-link" href="index.html">Trang chủ</a></li>
+                <li class="nav-item"><a class="nav-link" href="tours.html">Tour</a></li>
+                <li class="nav-item"><a class="nav-link" href="news.html">Tin tức</a></li>
+                <li class="nav-item"><a class="nav-link" href="about.html">Giới thiệu</a></li>
+                <li class="nav-item" id="registerNav"><a class="nav-link" href="register.html">Đăng ký</a></li>
+            </ul>
+            <div id="userGreeting" class="ms-3 d-none d-flex align-items-center flex-wrap gap-2">
+                <strong id="usernameDisplay" style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 100px;"></strong>
+                <a href="payment.html" id="cartLink" class="text-decoration-none" style="margin-left: 10px;">
+                    Giỏ hàng (<span id="cartItemCount">0</span>)
+                </a>
+                <span id="separator" class="d-none">|</span>
+                <a href="#" id="logoutBtn" class="text-danger text-decoration-none" style="white-space: nowrap; margin-left: 10px;">Đăng xuất</a>
+            </div>
+        </nav>
+    </div>
+</header>
+  <!-- Banner -->
+  <section class="container text-center mb-4">
+    <img src="../img/banner-du-lich-chau-au.jpg" alt="Hình ảnh banner du lịch Iuborn" class="img-fluid rounded shadow" />
+  </section>
+
+  <!-- Form Đăng nhập & Tìm kiếm -->
+  <section class="container mb-5">
+    <div class="row g-4 justify-content-center">
+      <!-- Đăng nhập -->
+      <div class="col-lg-5 col-md-6" id="loginCardContainer">
+        <div class="card p-4 shadow" id="loginCard">
+          <h4 class="text-primary mb-3">Đăng nhập</h4>
+          <form id="loginForm">
+            <div class="mb-3">
+              <label for="loginEmail">Email:</label>
+              <input type="email" class="form-control" id="loginEmail" required />
+            </div>
+            <div class="mb-3">
+              <label for="loginPassword">Mật khẩu:</label>
+              <input type="password" class="form-control" id="loginPassword" required />
+            </div>
+            <button type="submit" class="btn btn-primary w-100">Đăng nhập</button>
+          </form>
+        </div>
+      </div>
+
+      <!-- Thẻ Intro Text -->
+      <div class="intro-text d-none">
+        <h2>Chào mừng đến với Iuborn Travel!</h2>
+        <p>Chúng tôi cung cấp những hành trình khám phá tuyệt vời trên khắp Việt Nam và thế giới...</p>
+      </div>
+
+      <!-- Tìm kiếm -->
+      <div class="col-lg-5 col-md-6 position-relative">
+        <div class="card p-4 shadow" id="searchCard">
+          <h4 class="text-success mb-3">Tìm kiếm tour</h4>
+            <form id="searchForm" action="search.html" method="GET">
+              <div class="mb-3 position-relative">
+                <label for="searchKeyword">Từ khóa:</label>
+                  <input type="text" id="searchKeyword" name="q" class="form-control" placeholder="Tìm theo địa điểm, loại tour..." autocomplete="off" required />
+                    <div id="searchResults"></div>
+              </div>
+              <button type="submit" class="btn btn-success w-100">Tìm kiếm</button>
+            </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="bg-dark text-light p-4 mt-auto">
+    <div class="container text-center">
+      <p>© 2025 Iuborn Travel.</p>
+      <p><a href="sitemap.html" class="text-light">Sitemap</a> | <a href="about.html" class="text-light">Liên hệ</a></p>
+    </div>
+  </footer>
+
+  <!-- Modal Chào mừng -->
+  <div class="modal fade" id="welcomeModal" tabindex="-1" aria-labelledby="welcomeModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header bg-success text-white">
+          <h5 class="modal-title" id="welcomeModalLabel">🎉 Chào mừng bạn!</h5>
+          <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Đóng"></button>
+        </div>
+        <div class="modal-body">
+          <p>Xin chào <strong id="modalUsername"></strong>, chúc bạn có trải nghiệm tuyệt vời cùng Iuborn Travel! 🌍</p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-success" data-bs-dismiss="modal">Bắt đầu khám phá</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Scripts -->
+  <script src="jquery.min.js"></script>
+  <script src="libs/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="libs/jquery/updateHeaderAuth.js"></script>
+  <script>
+    // Gợi ý từ khóa
+    const tours = ["Khám phá Sapa", "Đà Nẵng - Hội An", "Vịnh Hạ Long"];
+    const searchInput = document.getElementById("searchKeyword");
+    const searchResults = document.getElementById("searchResults");
+  
+    searchInput.addEventListener("input", function () {
+      const query = this.value.toLowerCase().trim();
+      searchResults.innerHTML = "";
+      if (query.length === 0) {
+        searchResults.style.display = "none";
+        return;
+      }
+  
+      const filtered = tours.filter(tour => tour.toLowerCase().includes(query));
+      if (filtered.length > 0) {
+        searchResults.style.display = "block";
+        filtered.forEach(tour => {
+          const a = document.createElement("a");
+          a.href = "#";
+          a.textContent = tour;
+          a.addEventListener("click", function (e) {
+            e.preventDefault();
+            searchInput.value = tour;
+            searchResults.style.display = "none";
+          });
+          searchResults.appendChild(a);
+        });
+      } else {
+        searchResults.style.display = "none";
+      }
+    });
+  
+    // Ẩn gợi ý khi click ngoài
+    document.addEventListener("click", function (e) {
+      if (!searchInput.contains(e.target) && !searchResults.contains(e.target)) {
+        searchResults.style.display = "none";
+      }
+    });
+  </script>
+</body>
+</html>

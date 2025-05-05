@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <title>Đăng ký thành viên - Iuborn Travel</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="libs/bootstrap/css/bootstrap.min.css">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    .error { color: red; font-size: 0.9rem; }
+  </style>
+</head>
+<body>
+  <header class="bg-light shadow-sm p-3 mb-4">
+    <div class="container d-flex justify-content-between align-items-center flex-wrap">
+        <h1 class="h3 text-primary mb-2 mb-md-0" id="titleheader">🌍 Iuborn Travel</h1>
+        <nav class="d-flex align-items-center flex-wrap">
+            <ul class="nav" id="mainNav">
+                <li class="nav-item"><a class="nav-link" href="index.html">Trang chủ</a></li>
+                <li class="nav-item"><a class="nav-link" href="tours.html">Tour</a></li>
+                <li class="nav-item"><a class="nav-link" href="news.html">Tin tức</a></li>
+                <li class="nav-item"><a class="nav-link" href="about.html">Giới thiệu</a></li>
+                <li class="nav-item" id="registerNav"><a class="nav-link" href="register.html">Đăng ký</a></li>
+            </ul>
+            <div id="userGreeting" class="ms-3 d-none d-flex align-items-center flex-wrap gap-2">
+                <strong id="usernameDisplay" style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 100px;"></strong>
+                <a href="payment.html" id="cartLink" class="text-decoration-none" style="margin-left: 10px;">
+                    Giỏ hàng (<span id="cartItemCount">0</span>)
+                </a>
+                <span id="separator" class="d-none">|</span>
+                <a href="#" id="logoutBtn" class="text-danger text-decoration-none" style="white-space: nowrap; margin-left: 10px;">Đăng xuất</a>
+            </div>
+        </nav>
+    </div>
+</header>
+
+  <main class="container">
+    <h2 class="mb-4">Đăng ký thành viên</h2>
+    <form id="registerForm" class="row g-3">
+      <div class="col-md-6">
+        <label for="fullname" class="form-label">Họ tên</label>
+        <input type="text" class="form-control" id="fullname" required>
+        <div class="error" id="fullnameError"></div>
+      </div>
+      <div class="col-md-6">
+        <label for="email" class="form-label">Email</label>
+        <input type="email" class="form-control" id="email" required>
+        <div class="error" id="emailError"></div>
+      </div>
+      <div class="col-md-6">
+        <label for="username" class="form-label">Tên đăng nhập</label>
+        <input type="text" class="form-control" id="username" required>
+        <div class="error" id="usernameError"></div>
+      </div>
+      <div class="col-md-6">
+        <label for="password" class="form-label">Mật khẩu</label>
+        <input type="password" class="form-control" id="password" required>
+        <div class="error" id="passwordError"></div>
+      </div>
+      <div class="col-12">
+        <button type="submit" class="btn btn-primary">Đăng ký</button>
+      </div>
+    </form>
+
+    <div id="result" class="mt-4" style="display:none;">
+      <h4>🎉 Đăng ký thành công!</h4>
+      <p><strong>Họ tên:</strong> <span id="resFullname"></span></p>
+      <p><strong>Email:</strong> <span id="resEmail"></span></p>
+      <p><strong>Tên đăng nhập:</strong> <span id="resUsername"></span></p>
+    </div>
+  </main>
+
+  <footer class="bg-dark text-light p-4 mt-auto">
+    <div class="container text-center">
+      <p>© 2025 Iuborn Travel.</p>
+      <p><a href="sitemap.html" class="text-light">Sitemap</a> | <a href="about.html" class="text-light">Liên hệ</a></p>
+    </div>
+  </footer>
+
+  <script src="libs/jquery/jquery.min.js"></script>
+  <script>
+    $("#registerForm").on("submit", function(e) {
+      e.preventDefault();
+      let isValid = true;
+
+      const fullname = $("#fullname").val().trim();
+      const email = $("#email").val().trim();
+      const username = $("#username").val().trim();
+      const password = $("#password").val().trim();
+
+      $(".error").text("");
+
+      if (fullname.length < 3) {
+        $("#fullnameError").text("Họ tên phải từ 3 ký tự.");
+        isValid = false;
+      }
+
+      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      if (!emailRegex.test(email)) {
+        $("#emailError").text("Email không đúng định dạng.");
+        isValid = false;
+      }
+
+      if (username.length < 3) {
+        $("#usernameError").text("Tên đăng nhập phải từ 3 ký tự.");
+        isValid = false;
+      }
+
+      if (password.length < 6) {
+        $("#passwordError").text("Mật khẩu phải từ 6 ký tự.");
+        isValid = false;
+      }
+
+      if (isValid) {
+        const userData = { fullname, email, username, password };
+        localStorage.setItem("userData", JSON.stringify(userData));
+
+        $("#resFullname").text(fullname);
+        $("#resEmail").text(email);
+        $("#resUsername").text(username);
+        $("#registerForm").hide();
+        $("#result").fadeIn();
+      }
+    });
+  </script>
+</body>
+</html>

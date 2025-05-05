@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Sitemap - Iuborn Travel</title>
+  <link rel="stylesheet" href="libs/bootstrap/css/bootstrap.min.css">
+  <link rel="stylesheet" href="style.css">
+</head>
+<style>
+  .tree, .tree ul {
+    list-style-type: none;
+    position: relative;
+    padding-left: 1em;
+  }
+  
+  .tree ul {
+    margin-left: 1em;
+    padding-left: 1.5em;
+    border-left: 2px dashed #ccc;
+  }
+  
+  .tree span {
+    display: inline-block;
+    padding: 8px 15px;
+    background: #f8f9fa;
+    border-radius: 8px;
+    border: 1px solid #ddd;
+    font-weight: 500;
+    transition: all 0.3s ease;
+  }
+  
+  .tree span:hover {
+    background: #e2f0ff;
+    border-color: #0d6efd;
+  }
+  
+  .tree a {
+    text-decoration: none;
+    color: #0d6efd;
+  }
+  
+  .tree a:hover {
+    text-decoration: underline;
+  }  
+</style>
+<body>
+  <!-- Header -->
+  <header class="bg-light shadow-sm p-3 mb-4">
+    <div class="container d-flex justify-content-between align-items-center flex-wrap">
+        <h1 class="h3 text-primary mb-2 mb-md-0" id="titleheader">🌍 Iuborn Travel</h1>
+        <nav class="d-flex align-items-center flex-wrap">
+            <ul class="nav" id="mainNav">
+                <li class="nav-item"><a class="nav-link" href="index.html">Trang chủ</a></li>
+                <li class="nav-item"><a class="nav-link" href="tours.html">Tour</a></li>
+                <li class="nav-item"><a class="nav-link" href="news.html">Tin tức</a></li>
+                <li class="nav-item"><a class="nav-link" href="about.html">Giới thiệu</a></li>
+                <li class="nav-item" id="registerNav"><a class="nav-link" href="register.html">Đăng ký</a></li>
+            </ul>
+            <div id="userGreeting" class="ms-3 d-none d-flex align-items-center flex-wrap gap-2">
+                <strong id="usernameDisplay" style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 100px;"></strong>
+                <a href="payment.html" id="cartLink" class="text-decoration-none" style="margin-left: 10px;">
+                    Giỏ hàng (<span id="cartItemCount">0</span>)
+                </a>
+                <span id="separator" class="d-none">|</span>
+                <a href="#" id="logoutBtn" class="text-danger text-decoration-none" style="white-space: nowrap; margin-left: 10px;">Đăng xuất</a>
+            </div>
+        </nav>
+    </div>
+</header>
+
+  <!-- Sitemap Content -->
+  <!-- Sitemap Content -->
+  <!-- Mermaid CDN -->
+<script type="module">
+  import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
+  mermaid.initialize({ startOnLoad: true });
+</script>
+
+<!-- Sitemap bằng Mermaid -->
+<div class="container my-5">
+  <h2 class="text-center mb-4 text-primary">Sơ đồ Website</h2>
+  <p class="text-center mb-4 text-muted">Bấm vào mỗi khối để truy cập trang tương ứng:</p>
+
+  <div class="mermaid">
+    graph TD
+      A[Trang chủ] --> B[Tour]
+      A --> C[Tin tức]
+      A --> D[Giới thiệu]
+      A --> E[Đăng ký]
+      A --> F[Giỏ hàng]
+
+      B --> B1[Chi tiết Tour 1]
+      B --> B2[Chi tiết Tour 2]
+      B --> B3[Chi tiết Tour 3]
+
+      C --> C1[Chi tiết Tin tức 1]
+      C --> C2[Chi tiết Tin tức 2]
+      C --> C3[Chi tiết Tin tức 3]
+
+      %% Clickable links
+      click A "index.html" "Trang chủ"
+      click B "tours.html" "Xem danh sách tour"
+      click C "news.html" "Tin tức du lịch"
+      click D "about.html" "Giới thiệu công ty"
+      click E "register.html" "Đăng ký thành viên"
+      click F "payment.html" "Xem giỏ hàng"
+  </div>
+</div>
+
+<!-- Sitemap Content -->
+<section class="container py-5">
+  <div class="row g-4">
+    <!-- Card -->
+    <div class="col-md-4">
+      <div class="card shadow-sm h-100 border-0">
+        <div class="card-body text-center">
+          <div class="mb-3 fs-2 text-primary">🏠</div>
+          <h5 class="card-title">Trang chủ</h5>
+          <p class="card-text text-muted">Nơi bắt đầu hành trình khám phá với các tour, tin tức và thông tin tổng quan.</p>
+          <a href="index.html" class="btn btn-outline-primary mt-3">Truy cập</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-4">
+      <div class="card shadow-sm h-100 border-0">
+        <div class="card-body text-center">
+          <div class="mb-3 fs-2 text-primary">🗺️</div>
+          <h5 class="card-title">Danh sách Tour</h5>
+          <p class="card-text text-muted">Khám phá các tour du lịch phong phú và hấp dẫn được cập nhật liên tục.</p>
+          <a href="tours.html" class="btn btn-outline-primary mt-3">Truy cập</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-4">
+      <div class="card shadow-sm h-100 border-0">
+        <div class="card-body text-center">
+          <div class="mb-3 fs-2 text-primary">📰</div>
+          <h5 class="card-title">Tin tức</h5>
+          <p class="card-text text-muted">Cập nhật thông tin mới nhất về du lịch, khuyến mãi và xu hướng hiện nay.</p>
+          <a href="news.html" class="btn btn-outline-primary mt-3">Truy cập</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-4">
+      <div class="card shadow-sm h-100 border-0">
+        <div class="card-body text-center">
+          <div class="mb-3 fs-2 text-primary">ℹ️</div>
+          <h5 class="card-title">Giới thiệu</h5>
+          <p class="card-text text-muted">Tìm hiểu về sứ mệnh, giá trị và đội ngũ phía sau Iuborn Travel.</p>
+          <a href="about.html" class="btn btn-outline-primary mt-3">Truy cập</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-4">
+      <div class="card shadow-sm h-100 border-0">
+        <div class="card-body text-center">
+          <div class="mb-3 fs-2 text-primary">📝</div>
+          <h5 class="card-title">Đăng ký</h5>
+          <p class="card-text text-muted">Tạo tài khoản để đặt tour nhanh chóng và nhận thông báo ưu đãi riêng.</p>
+          <a href="register.html" class="btn btn-outline-primary mt-3">Truy cập</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+  
+  <!-- Footer -->
+  <footer class="bg-dark text-light p-4 mt-auto">
+    <div class="container text-center">
+      <p>© 2025 Iuborn Travel.</p>
+      <p><a href="sitemap.html" class="text-light">Sitemap</a> | <a href="about.html" class="text-light">Liên hệ</a></p>
+    </div>
+  </footer>
+
+  <!-- Script -->
+  <script src="libs/jquery/jquery.min.js"></script>
+  <script src="libs/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script>
+    function updateHeaderAuth() {
+      const isLoggedIn = localStorage.getItem("loggedIn");
+      const username = localStorage.getItem("username");
+      const showWelcome = localStorage.getItem("showWelcome");
+
+      const userGreeting = document.getElementById("userGreeting");
+      const usernameDisplay = document.getElementById("usernameDisplay");
+      const registerNav = document.getElementById("registerNav");
+      const loginCardContainer = document.getElementById("loginCardContainer");
+      const introText = document.querySelector(".intro-text");
+      const logoutBtn = document.getElementById("logoutBtn");
+      const separator = document.getElementById("separator");
+
+      if (isLoggedIn === "true" && username) {
+        userGreeting?.classList.remove("d-none");
+        usernameDisplay.textContent = username;
+        registerNav?.classList.add("d-none");
+        loginCardContainer?.classList.add("d-none");
+        introText?.classList.remove("d-none");
+        logoutBtn?.classList.remove("d-none");
+        separator?.classList.remove("d-none");
+
+        if (showWelcome === "true") {
+          document.getElementById("modalUsername").textContent = username;
+          const welcomeModal = new bootstrap.Modal(document.getElementById("welcomeModal"));
+          welcomeModal.show();
+          localStorage.removeItem("showWelcome");
+        }
+      } else {
+        userGreeting?.classList.add("d-none");
+        registerNav?.classList.remove("d-none");
+        logoutBtn?.classList.add("d-none");
+        separator?.classList.add("d-none");
+      }
+    }
+
+    // Xử lý đăng nhập
+    document.getElementById("loginForm")?.addEventListener("submit", function (e) {
+      e.preventDefault();
+      const email = document.getElementById("loginEmail").value.trim();
+      const username = email.split("@")[0];
+      localStorage.setItem("loggedIn", "true");
+      localStorage.setItem("username", username);
+      localStorage.setItem("showWelcome", "true");
+      updateHeaderAuth();
+      location.reload();
+    });
+
+    // Xử lý đăng xuất
+    document.getElementById("logoutBtn")?.addEventListener("click", function (e) {
+      e.preventDefault();
+      localStorage.clear();
+      updateHeaderAuth();
+      location.href = "sitemap.html";
+    });
+
+    // Gọi khi trang load
+    window.addEventListener("DOMContentLoaded", updateHeaderAuth);
+  </script>
+</body>
+</html>

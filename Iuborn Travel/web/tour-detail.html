@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Chi tiết Tour - Iuborn Travel</title>
+  <link rel="stylesheet" href="libs/bootstrap/css/bootstrap.min.css">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    .card-img-top {
+      object-fit: cover;
+      height: 300px;
+    }
+    .card-body {
+      padding: 2rem;
+    }
+    .card-title {
+      font-size: 1.5rem;
+    }
+    .card-text {
+      font-size: 1.125rem;
+    }
+    .btn {
+      margin-top: 1rem;
+    }
+    .tour-detail-info {
+      margin-top: 2rem;
+    }
+  </style>
+</head>
+<body>
+  <!-- Header -->
+  <header class="bg-light shadow-sm p-3 mb-4">
+    <div class="container d-flex justify-content-between align-items-center flex-wrap">
+        <h1 class="h3 text-primary mb-2 mb-md-0" id="titleheader">🌍 Iuborn Travel</h1>
+        <nav class="d-flex align-items-center flex-wrap">
+            <ul class="nav" id="mainNav">
+                <li class="nav-item"><a class="nav-link" href="index.html">Trang chủ</a></li>
+                <li class="nav-item"><a class="nav-link" href="tours.html">Tour</a></li>
+                <li class="nav-item"><a class="nav-link" href="news.html">Tin tức</a></li>
+                <li class="nav-item"><a class="nav-link" href="about.html">Giới thiệu</a></li>
+                <li class="nav-item" id="registerNav"><a class="nav-link" href="register.html">Đăng ký</a></li>
+            </ul>
+            <div id="userGreeting" class="ms-3 d-none d-flex align-items-center flex-wrap gap-2">
+                <strong id="usernameDisplay" style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 100px;"></strong>
+                <a href="payment.html" id="cartLink" class="text-decoration-none" style="margin-left: 10px;">
+                    Giỏ hàng (<span id="cartItemCount">0</span>)
+                </a>
+                <span id="separator" class="d-none">|</span>
+                <a href="#" id="logoutBtn" class="text-danger text-decoration-none" style="white-space: nowrap; margin-left: 10px;">Đăng xuất</a>
+            </div>
+        </nav>
+    </div>
+</header>
+
+  <!-- Tour Detail Section -->
+  <section class="container tour-detail-info">
+    <div class="row">
+      <div class="col-md-6">
+        <img src="" id="tourImage" class="card-img-top" alt="Tour Image">
+      </div>
+      <div class="col-md-6">
+        <h2 id="tourName" class="card-title">Tên Tour</h2>
+        <p id="tourDescription" class="card-text">Mô tả tour</p>
+        <p><strong>Giá:</strong> <span id="tourPrice">Giá</span></p>
+        <p><strong>Ngày khởi hành:</strong> <span id="tourDeparture">Ngày</span></p>
+        <p><strong>Điểm đến:</strong> <span id="tourDestination">Địa điểm</span></p>
+        <a href="#" id="bookNowBtn" class="btn btn-primary">Đặt tour ngay</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="bg-dark text-light p-4 mt-auto">
+    <div class="container text-center">
+      <p>© 2025 Iuborn Travel.</p>
+      <p><a href="sitemap.html" class="text-light">Sitemap</a> | <a href="about.html" class="text-light">Liên hệ</a></p>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="libs/jquery/jquery.min.js"></script>
+  <script src="libs/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="libs/jquery/updateHeaderAuth.js"></script>
+  <script>
+    $(document).ready(function () {
+      // Lấy ID tour từ URL
+      const urlParams = new URLSearchParams(window.location.search);
+      const tourId = urlParams.get("id");
+  
+      // Danh sách tour mẫu (có thể load từ server hoặc file JSON nếu cần)
+      const tours = [
+        {
+          id: "1",
+          name: "Khám phá Hạ Long",
+          description: "Chuyến du ngoạn 2 ngày 1 đêm đến vịnh Hạ Long tuyệt đẹp.",
+          image: "../img/vinhHaLongQuangNinh-1651912066-8789-1651932294.webp",
+          price: 2500000,
+          departure: "01/05/2025",
+          destination: "Vịnh Hạ Long"
+        },
+        {
+          id: "2",
+          name: "Hành trình Sapa",
+          description: "Khám phá Sapa mờ sương, ruộng bậc thang và văn hóa vùng cao.",
+          image: "../img/1-cam-nang-du-lich-sapa.png",
+          price: 3200000,
+          departure: "15/05/2025",
+          destination: "Sapa"
+        },
+        {
+          id: "3",
+          name: "Đà Nẵng – Hội An",
+          description: "Trải nghiệm phố cổ Hội An và thành phố biển Đà Nẵng hiện đại.",
+          image: "../img/di-da-nang-hoi-an-nen-di-may-ngay-3-0926.webp",
+          price: 3900000,
+          departure: "20/05/2025",
+          destination: "Đà Nẵng, Hội An"
+        }
+      ];
+  
+      // Hiển thị thông tin tour nếu tìm thấy
+      const tour = tours.find(t => t.id === tourId);
+      if (tour) {
+        $('#tourImage').attr('src', tour.image);
+        $('#tourName').text(tour.name);
+        $('#tourDescription').text(tour.description);
+        $('#tourPrice').text(tour.price.toLocaleString('vi-VN') + 'đ'); // Định dạng khi hiển thị
+        $('#tourDeparture').text(tour.departure);
+        $('#tourDestination').text(tour.destination);
+    } else {
+        $('.tour-detail-info').html('<h3>Tour không tồn tại.</h3>');
+      }
+  
+      // Xử lý khi bấm nút "Đặt tour ngay"
+      $('#bookNowBtn').on('click', function (e) {
+        e.preventDefault();
+      
+        const isLoggedIn = localStorage.getItem("loggedIn");
+      
+        if (isLoggedIn === "true") {
+          // Lấy thông tin tour đang xem
+          const selectedTour = tours.find(t => t.id === tourId);
+          if (!selectedTour) return;
+      
+          // Lấy giỏ hàng hiện tại từ localStorage
+          let cart = JSON.parse(localStorage.getItem("cart")) || [];
+      
+          // Kiểm tra nếu tour chưa có trong giỏ thì thêm vào
+          const isAlreadyInCart = cart.some(t => t.id === selectedTour.id);
+          if (!isAlreadyInCart) {
+            cart.push(selectedTour);
+            localStorage.setItem("cart", JSON.stringify(cart));
+          }
+      
+          // Chuyển đến trang thanh toán kèm theo tour id
+          window.location.href = `payment.html?id=${tourId}`;
+        } else {
+          // Nếu chưa đăng nhập thì chuyển sang trang đăng ký
+          window.location.href = "register.html";
+        }
+      });
+    });
+  </script>  
+</body>
+</html>

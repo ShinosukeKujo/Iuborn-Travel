@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Danh sách Tour - Iuborn Travel</title>
+  <link rel="stylesheet" href="libs/bootstrap/css/bootstrap.min.css">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    /* Chỉnh sửa kích thước ảnh trong card để ảnh luôn vừa vặn */
+    .card-img-top {
+      object-fit: cover;
+      height: 200px; /* Đảm bảo ảnh không bị kéo dài và vừa vặn */
+    }
+    .card-body {
+      padding: 1rem; /* Đảm bảo padding cho card body không quá rộng */
+    }
+    .card-title {
+      font-size: 1.25rem; /* Làm tiêu đề dễ nhìn hơn */
+    }
+    .card-text {
+      font-size: 1rem; /* Chỉnh lại kích thước text để dễ đọc */
+    }
+    .btn {
+      width: 100%;
+      margin-top: 1rem; /* Làm cho nút bấm vừa vặn hơn */
+    }
+  </style>
+</head>
+<body>
+  <!-- Header -->
+  <header class="bg-light shadow-sm p-3 mb-4">
+    <div class="container d-flex justify-content-between align-items-center flex-wrap">
+        <h1 class="h3 text-primary mb-2 mb-md-0" id="titleheader">🌍 Iuborn Travel</h1>
+        <nav class="d-flex align-items-center flex-wrap">
+            <ul class="nav" id="mainNav">
+                <li class="nav-item"><a class="nav-link" href="index.html">Trang chủ</a></li>
+                <li class="nav-item"><a class="nav-link" href="tours.html">Tour</a></li>
+                <li class="nav-item"><a class="nav-link" href="news.html">Tin tức</a></li>
+                <li class="nav-item"><a class="nav-link" href="about.html">Giới thiệu</a></li>
+                <li class="nav-item" id="registerNav"><a class="nav-link" href="register.html">Đăng ký</a></li>
+            </ul>
+            <div id="userGreeting" class="ms-3 d-none d-flex align-items-center flex-wrap gap-2">
+                <strong id="usernameDisplay" style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 100px;"></strong>
+                <a href="payment.html" id="cartLink" class="text-decoration-none" style="margin-left: 10px;">
+                    Giỏ hàng (<span id="cartItemCount">0</span>)
+                </a>
+                <span id="separator" class="d-none">|</span>
+                <a href="#" id="logoutBtn" class="text-danger text-decoration-none" style="white-space: nowrap; margin-left: 10px;">Đăng xuất</a>
+            </div>
+        </nav>
+    </div>
+</header>
+
+  <!-- Tour List Section -->
+  <section class="container">
+    <h2 class="text-center mb-4">Danh sách các tour du lịch hấp dẫn</h2>
+    <div class="row row-cols-1 row-cols-md-3 g-4" id="tourList">
+      <!-- Các tour sẽ được hiển thị ở đây -->
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="bg-dark text-light p-4 mt-auto">
+    <div class="container text-center">
+      <p>© 2025 Iuborn Travel.</p>
+      <p><a href="sitemap.html" class="text-light">Sitemap</a> | <a href="about.html" class="text-light">Liên hệ</a></p>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="libs/jquery/jquery.min.js"></script>
+  <script src="libs/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="libs/jquery/updateHeaderAuth.js"></script>
+  <script>
+    window.addEventListener("DOMContentLoaded", function () {
+      // Danh sách các tour mẫu
+      const tours = [
+        { id: "1", name: "Khám phá Hạ Long", description: "Chuyến du ngoạn 2 ngày 1 đêm đến vịnh Hạ Long tuyệt đẹp.", image: "../img/vinhHaLongQuangNinh-1651912066-8789-1651932294.webp", price: "2.500.000đ" },
+        { id: "2", name: "Hành trình Sapa", description: "Khám phá Sapa mờ sương, ruộng bậc thang và văn hóa vùng cao.", image: "../img/1-cam-nang-du-lich-sapa.png", price: "3.200.000đ" },
+        { id: "3", name: "Đà Nẵng – Hội An", description: "Trải nghiệm phố cổ Hội An và thành phố biển Đà Nẵng hiện đại.", image: "../img/di-da-nang-hoi-an-nen-di-may-ngay-3-0926.webp", price: "3.900.000đ" }
+      ];
+
+      // Lấy phần tử để hiển thị danh sách tour
+      const tourList = document.getElementById("tourList");
+
+      // Tạo HTML cho từng tour
+      tours.forEach(tour => {
+        const tourCard = document.createElement("div");
+        tourCard.classList.add("col");
+
+        tourCard.innerHTML = `
+          <div class="card h-100 shadow-sm">
+            <img src="${tour.image}" class="card-img-top" alt="${tour.name}">
+            <div class="card-body">
+              <h5 class="card-title">${tour.name}</h5>
+              <p class="card-text">${tour.description}</p>
+              <p><strong>Giá:</strong> ${tour.price}</p>
+              <a href="tour-detail.html?id=${tour.id}" class="btn btn-primary">Xem chi tiết</a>
+            </div>
+          </div>
+        `;
+
+        // Thêm thẻ card vào danh sách
+        tourList.appendChild(tourCard);
+      });
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Kết quả tìm kiếm - Tour Du Lịch Iuborn</title>
+  <link rel="stylesheet" href="libs/bootstrap/css/bootstrap.min.css" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <!-- Header -->
+  <header class="bg-light shadow-sm p-3 mb-4">
+    <div class="container d-flex justify-content-between align-items-center flex-wrap">
+        <h1 class="h3 text-primary mb-2 mb-md-0" id="titleheader">🌍 Iuborn Travel</h1>
+        <nav class="d-flex align-items-center flex-wrap">
+            <ul class="nav" id="mainNav">
+                <li class="nav-item"><a class="nav-link" href="index.html">Trang chủ</a></li>
+                <li class="nav-item"><a class="nav-link" href="tours.html">Tour</a></li>
+                <li class="nav-item"><a class="nav-link" href="news.html">Tin tức</a></li>
+                <li class="nav-item"><a class="nav-link" href="about.html">Giới thiệu</a></li>
+                <li class="nav-item" id="registerNav"><a class="nav-link" href="register.html">Đăng ký</a></li>
+            </ul>
+            <div id="userGreeting" class="ms-3 d-none d-flex align-items-center flex-wrap gap-2">
+                <strong id="usernameDisplay" style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 100px;"></strong>
+                <a href="payment.html" id="cartLink" class="text-decoration-none" style="margin-left: 10px;">
+                    Giỏ hàng (<span id="cartItemCount">0</span>)
+                </a>
+                <span id="separator" class="d-none">|</span>
+                <a href="#" id="logoutBtn" class="text-danger text-decoration-none" style="white-space: nowrap; margin-left: 10px;">Đăng xuất</a>
+            </div>
+        </nav>
+    </div>
+</header>
+
+  <!-- Nội dung tìm kiếm -->
+  <section class="container mb-5">
+    <h4>Kết quả tìm kiếm cho: <span id="searchQuery"></span></h4>
+    <div id="searchResults" class="row">
+      <!-- Các kết quả tìm kiếm sẽ được hiển thị ở đây -->
+    </div>
+  </section>
+
+  <!-- Footer và Scripts -->
+  <footer class="bg-dark text-light p-4 mt-auto">
+    <div class="container text-center">
+      <p>© 2025 Iuborn Travel.</p>
+      <p><a href="sitemap.html" class="text-light">Sitemap</a> | <a href="about.html" class="text-light">Liên hệ</a></p>
+    </div>
+  </footer>
+  <script src="jquery.min.js"></script>
+  <script src="libs/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="libs/jquery/updateHeaderAuth.js"></script>
+  <script src="libs/jquery/news-detail.js"></script>
+  <script>
+    window.addEventListener("DOMContentLoaded", function () {
+      // Lấy từ khóa từ URL
+      const urlParams = new URLSearchParams(window.location.search);
+      const query = urlParams.get("q");
+      document.getElementById("searchQuery").textContent = query;
+
+      // Danh sách các tour mẫu
+      const tours = [
+        { name: "Khám phá Sapa", id: "2", description: "Khám phá những cảnh đẹp tuyệt vời của Sapa." },
+        { name: "Đà Nẵng - Hội An", id: "3", description: "Trải nghiệm những thành phố biển tuyệt đẹp." },
+        { name: "Vịnh Hạ Long", id: "1", description: "Tham quan kỳ quan thiên nhiên thế giới." }
+      ];
+
+      // Tìm các kết quả liên quan đến từ khóa
+      const searchResults = document.getElementById("searchResults");
+      const filteredTours = tours.filter(tour => tour.name.toLowerCase().includes(query.toLowerCase()));
+
+      if (filteredTours.length > 0) {
+        filteredTours.forEach(tour => {
+          const resultItem = document.createElement("div");
+          resultItem.classList.add("col-md-4", "mb-4");
+          resultItem.innerHTML = `
+            <div class="card shadow">
+              <div class="card-body">
+                <h5 class="card-title">${tour.name}</h5>
+                <p class="card-text">${tour.description}</p>
+                <a href="tour-detail.html?id=${tour.id}" class="btn btn-primary">Xem chi tiết</a>
+              </div>
+            </div>`;
+          searchResults.appendChild(resultItem);
+        });
+      } else {
+        searchResults.innerHTML = "<p class='text-muted'>Không tìm thấy kết quả phù hợp.</p>";
+      }
+    });
+  </script>
+</body>
+</html>

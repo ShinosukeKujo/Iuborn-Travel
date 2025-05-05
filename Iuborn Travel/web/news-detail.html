@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Chi tiết tin tức - Iuborn Travel</title>
+  <link rel="stylesheet" href="libs/bootstrap/css/bootstrap.min.css" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <!-- Header -->
+  <header class="bg-light shadow-sm p-3 mb-4">
+    <div class="container d-flex justify-content-between align-items-center flex-wrap">
+        <h1 class="h3 text-primary mb-2 mb-md-0" id="titleheader">🌍 Iuborn Travel</h1>
+        <nav class="d-flex align-items-center flex-wrap">
+            <ul class="nav" id="mainNav">
+                <li class="nav-item"><a class="nav-link" href="index.html">Trang chủ</a></li>
+                <li class="nav-item"><a class="nav-link" href="tours.html">Tour</a></li>
+                <li class="nav-item"><a class="nav-link" href="news.html">Tin tức</a></li>
+                <li class="nav-item"><a class="nav-link" href="about.html">Giới thiệu</a></li>
+                <li class="nav-item" id="registerNav"><a class="nav-link" href="register.html">Đăng ký</a></li>
+            </ul>
+            <div id="userGreeting" class="ms-3 d-none d-flex align-items-center flex-wrap gap-2">
+                <strong id="usernameDisplay" style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 100px;"></strong>
+                <a href="payment.html" id="cartLink" class="text-decoration-none" style="margin-left: 10px;">
+                    Giỏ hàng (<span id="cartItemCount">0</span>)
+                </a>
+                <span id="separator" class="d-none">|</span>
+                <a href="#" id="logoutBtn" class="text-danger text-decoration-none" style="white-space: nowrap; margin-left: 10px;">Đăng xuất</a>
+            </div>
+        </nav>
+    </div>
+</header>
+
+  <!-- Main Content -->
+  <main class="container">
+    <div id="newsDetail" class="mb-5">
+      <!-- Nội dung tin tức sẽ được chèn bằng JavaScript -->
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="bg-dark text-light p-4 mt-auto">
+    <div class="container text-center">
+      <p>© 2025 Iuborn Travel.</p>
+      <p><a href="sitemap.html" class="text-light">Sitemap</a> | <a href="about.html" class="text-light">Liên hệ</a></p>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="libs/jquery/jquery.min.js"></script>
+  <script src="libs/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="libs/jquery/updateHeaderAuth.js"></script>
+  <script>
+    const newsData = [
+      {
+        id: 1,
+        title: "Khám phá đảo Rồng - Viên ngọc ẩn mình",
+        image: "../img/roland-sanchez-dragon-island.jpg",
+        description: "Đảo Rồng đang là điểm đến hot nhất mùa hè này. Hãy cùng khám phá...",
+        content: `Đảo Rồng, nằm ở phía Nam của Iuborn, là một trong những điểm đến bí ẩn và hấp dẫn nhất trong thời gian gần đây. Với làn nước trong xanh, những bãi cát trắng trải dài và hệ sinh thái rừng nguyên sinh độc đáo, nơi đây nhanh chóng trở thành lựa chọn hàng đầu cho các tín đồ du lịch khám phá.
+
+Không chỉ nổi bật với cảnh sắc thiên nhiên, Đảo Rồng còn mang trong mình nhiều truyền thuyết ly kỳ về những sinh vật cổ xưa từng sinh sống tại đây. Người dân địa phương tin rằng, vào những đêm trăng tròn, nếu lắng nghe kỹ, bạn có thể nghe thấy tiếng gầm vang vọng từ hang núi đá.
+
+Nếu bạn đang tìm kiếm một nơi để “thoát khỏi thế giới” và hòa mình vào thiên nhiên hoang sơ, Đảo Rồng chắc chắn là lựa chọn hoàn hảo cho mùa hè này!`
+      },
+      {
+        id: 2,
+        title: "5 mẹo du lịch tiết kiệm mùa cao điểm",
+        image: "../img/istockphoto-1133825734-612x612.jpg",
+        description: "Đi du lịch tiết kiệm không khó, chỉ cần bạn biết cách lên kế hoạch...",
+        content: `Mùa cao điểm luôn đi kèm với giá cả tăng cao và tình trạng cháy vé. Tuy nhiên, bạn hoàn toàn có thể kiểm soát ngân sách du lịch với 5 mẹo sau:
+
+1. **Đặt sớm vé máy bay và khách sạn:** Đặt trước 1-2 tháng để tránh tăng giá.
+2. **Tránh đi vào cuối tuần hoặc lễ:** Du lịch giữa tuần giúp tiết kiệm đáng kể.
+3. **Mang theo đồ ăn nhẹ:** Giảm chi phí ăn uống tại sân bay hoặc điểm du lịch.
+4. **Chọn tour tự túc:** Tự lên lịch trình sẽ linh hoạt và phù hợp túi tiền hơn.
+5. **Sử dụng các ứng dụng khuyến mãi:** Các app như Booking, Traveloka thường có mã giảm giá hữu ích.
+
+Chỉ cần một chút kế hoạch, bạn đã có thể vi vu mà không lo "viêm ví".`
+      },
+      {
+        id: 3,
+        title: "Du lịch Iuborn: Ẩm thực và văn hóa đặc sắc",
+        image: "../img/7353c039-b0f0-4add-8f32-fec9761aeca9.jpg",
+        description: "Iuborn không chỉ đẹp mà còn có nền ẩm thực rất phong phú...",
+        content: `Iuborn – không chỉ nổi tiếng bởi những danh lam thắng cảnh hùng vĩ mà còn ghi dấu ấn trong lòng du khách bởi nền ẩm thực phong phú và văn hóa truyền thống đặc sắc.
+
+Ẩm thực Iuborn là sự hòa quyện tinh tế giữa các nền văn hóa của các tộc người khác nhau. Du khách không thể bỏ qua những món như **gà nướng cát Apristan**, **bánh nếp lá rừng Kotia**, hay **súp lúa mạch Yorith**.
+
+Bên cạnh đó, các lễ hội truyền thống như **Ngày Hội Ánh Sáng**, **Vũ Điệu Lửa Rồng** hay các phiên chợ đêm địa phương sẽ là cơ hội để bạn trải nghiệm văn hóa bản địa một cách trọn vẹn.
+
+Nếu bạn yêu thích khám phá chiều sâu văn hóa và vị giác, hãy để Iuborn là điểm đến tiếp theo trong hành trình của mình.`
+      }
+    ];
+
+    const urlParams = new URLSearchParams(window.location.search);
+    const newsId = Number(urlParams.get('id'));
+    const news = newsData.find(n => n.id === newsId);
+
+    if (news) {
+      $('#newsDetail').html(`
+        <h2 class="mb-3">${news.title}</h2>
+        <img src="${news.image}" alt="${news.title}" class="img-fluid mb-3 rounded">
+        <p class="text-muted">${news.description}</p>
+        <div class="lh-lg">${news.content.replace(/\n/g, "<br>")}</div>
+      `);
+    } else {
+      $('#newsDetail').html(`
+        <div class="alert alert-danger" role="alert">
+          Không tìm thấy tin tức bạn yêu cầu.
+        </div>
+      `);
+    }
+  </script>
+</body>
+</html>

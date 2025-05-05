@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Giới thiệu - Iuborn Travel</title>
+  <link rel="stylesheet" href="libs/bootstrap/css/bootstrap.min.css">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <!-- Header -->
+  <header class="bg-light shadow-sm p-3 mb-4">
+    <div class="container d-flex justify-content-between align-items-center flex-wrap">
+        <h1 class="h3 text-primary mb-2 mb-md-0" id="titleheader">🌍 Iuborn Travel</h1>
+        <nav class="d-flex align-items-center flex-wrap">
+            <ul class="nav" id="mainNav">
+                <li class="nav-item"><a class="nav-link" href="index.html">Trang chủ</a></li>
+                <li class="nav-item"><a class="nav-link" href="tours.html">Tour</a></li>
+                <li class="nav-item"><a class="nav-link" href="news.html">Tin tức</a></li>
+                <li class="nav-item"><a class="nav-link" href="about.html">Giới thiệu</a></li>
+                <li class="nav-item" id="registerNav"><a class="nav-link" href="register.html">Đăng ký</a></li>
+            </ul>
+            <div id="userGreeting" class="ms-3 d-none d-flex align-items-center flex-wrap gap-2">
+                <strong id="usernameDisplay" style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 100px;"></strong>
+                <a href="payment.html" id="cartLink" class="text-decoration-none" style="margin-left: 10px;">
+                    Giỏ hàng (<span id="cartItemCount">0</span>)
+                </a>
+                <span id="separator" class="d-none">|</span>
+                <a href="#" id="logoutBtn" class="text-danger text-decoration-none" style="white-space: nowrap; margin-left: 10px;">Đăng xuất</a>
+            </div>
+        </nav>
+    </div>
+</header>
+
+  <!-- About Section -->
+  <section class="container mb-5">
+    <h2 class="text-center mb-4">Giới thiệu về Iuborn Travel</h2>
+    <div class="row">
+      <div class="col-md-6">
+        <img src="../img/eren.webp" class="img-fluid rounded shadow" alt="Iuborn Travel">
+      </div>
+      <div class="col-md-6">
+        <h3>Chúng tôi là ai?</h3>
+        <p>Iuborn Travel là một công ty du lịch chuyên tổ chức các chuyến du ngoạn tuyệt vời đến những điểm đến nổi tiếng trong và ngoài nước. Với đội ngũ hướng dẫn viên giàu kinh nghiệm và các gói tour linh hoạt, chúng tôi cam kết mang đến cho bạn những trải nghiệm đáng nhớ nhất.</p>
+        <h3>Tầm nhìn và Sứ mệnh</h3>
+        <p>Tầm nhìn của chúng tôi là trở thành một trong những công ty du lịch hàng đầu, mang đến cho khách hàng những chuyến đi thú vị và tiện ích. Chúng tôi luôn nỗ lực để cung cấp các dịch vụ chất lượng cao, giúp bạn tận hưởng những kỳ nghỉ tuyệt vời và khám phá thế giới một cách dễ dàng.</p>
+        <h3>Liên hệ</h3>
+        <p>Để biết thêm chi tiết về các tour du lịch, vui lòng liên hệ với chúng tôi qua thông tin dưới đây:</p>
+        <ul>
+          <li><strong>Email:</strong> support@iuborntravel.com</li>
+          <li><strong>Điện thoại:</strong> +84 123 456 789</li>
+          <li><strong>Địa chỉ:</strong> Số 1, Phố ABC, Quận XYZ, TP. Hồ Chí Minh, Việt Nam</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="bg-dark text-light p-4 mt-auto">
+    <div class="container text-center">
+      <p>© 2025 Iuborn Travel.</p>
+      <p><a href="sitemap.html" class="text-light">Sitemap</a> | <a href="about.html" class="text-light">Liên hệ</a></p>
+    </div>
+  </footer>
+
+  <script src="libs/jquery/jquery.min.js"></script>
+  <script src="libs/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script>
+    function updateHeaderAuth() {
+      const isLoggedIn = localStorage.getItem("loggedIn");
+      const username = localStorage.getItem("username");
+      const showWelcome = localStorage.getItem("showWelcome");
+
+      const userGreeting = document.getElementById("userGreeting");
+      const usernameDisplay = document.getElementById("usernameDisplay");
+      const registerNav = document.getElementById("registerNav");
+      const loginCardContainer = document.getElementById("loginCardContainer");
+      const introText = document.querySelector(".intro-text");
+      const logoutBtn = document.getElementById("logoutBtn");
+      const separator = document.getElementById("separator");
+
+      if (isLoggedIn === "true" && username) {
+        userGreeting?.classList.remove("d-none");
+        usernameDisplay.textContent = username;
+        registerNav?.classList.add("d-none");
+        loginCardContainer?.classList.add("d-none");
+        introText?.classList.remove("d-none");
+        logoutBtn?.classList.remove("d-none");
+        separator?.classList.remove("d-none");
+
+        if (showWelcome === "true") {
+          document.getElementById("modalUsername").textContent = username;
+          const welcomeModal = new bootstrap.Modal(document.getElementById("welcomeModal"));
+          welcomeModal.show();
+          localStorage.removeItem("showWelcome");
+        }
+      } else {
+        userGreeting?.classList.add("d-none");
+        registerNav?.classList.remove("d-none");
+        logoutBtn?.classList.add("d-none");
+        separator?.classList.add("d-none");
+      }
+    }
+
+    // Xử lý đăng nhập
+    document.getElementById("loginForm")?.addEventListener("submit", function (e) {
+      e.preventDefault();
+      const email = document.getElementById("loginEmail").value.trim();
+      const username = email.split("@")[0];
+      localStorage.setItem("loggedIn", "true");
+      localStorage.setItem("username", username);
+      localStorage.setItem("showWelcome", "true");
+      updateHeaderAuth();
+      location.reload();
+    });
+
+    // Xử lý đăng xuất
+    document.getElementById("logoutBtn")?.addEventListener("click", function (e) {
+      e.preventDefault();
+      localStorage.clear();
+      updateHeaderAuth();
+      location.href = "sitemap.html";
+    });
+
+    // Gọi khi trang load
+    window.addEventListener("DOMContentLoaded", updateHeaderAuth);
+  </script>
+</body>
+</html>
