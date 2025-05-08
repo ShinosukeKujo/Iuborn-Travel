@@ -117,5 +117,22 @@
       }
     });
   </script>
+  <script>
+    paymentForm.addEventListener("submit", function (event) {
+  event.preventDefault();
+
+  const enteredEmail = document.getElementById("email").value;
+  const storedEmail = localStorage.getItem("email");
+
+  if (enteredEmail === storedEmail) {
+    alert("Email đã được đăng ký và trùng với thông tin hiện tại. Vui lòng sử dụng email khác.");
+    location.reload(); // reset lại trang
+    return;
+  }
+
+  alert("Thanh toán thành công!");
+  // Ở đây có thể gửi dữ liệu lên server
+});
+  </script>
 </body>
 </html>
