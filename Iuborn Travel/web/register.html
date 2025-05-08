@@ -73,66 +73,60 @@
 
   <script src="libs/jquery/jquery.min.js"></script>
   <script>
-    $("#registerForm").on("submit", function(e) {
-      e.preventDefault();
-      let isValid = true;
+  $("#registerForm").on("submit", function (e) {
+    e.preventDefault();
+    let isValid = true;
 
-      const fullname = $("#fullname").val().trim();
-      const email = $("#email").val().trim();
-      const username = $("#username").val().trim();
-      const password = $("#password").val().trim();
+    const fullname = $("#fullname").val().trim();
+    const email = $("#email").val().trim();
+    const username = $("#username").val().trim();
+    const password = $("#password").val().trim();
 
-      $(".error").text("");
+    $(".error").text("");
 
-      if (fullname.length < 3) {
-        $("#fullnameError").text("Họ tên phải từ 3 ký tự.");
-        isValid = false;
+    if (fullname.length < 3) {
+      $("#fullnameError").text("Họ tên phải từ 3 ký tự.");
+      isValid = false;
+    }
+
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(email)) {
+      $("#emailError").text("Email không đúng định dạng.");
+      isValid = false;
+    }
+
+    if (username.length < 3) {
+      $("#usernameError").text("Tên đăng nhập phải từ 3 ký tự.");
+      isValid = false;
+    }
+
+    if (password.length < 6) {
+      $("#passwordError").text("Mật khẩu phải từ 6 ký tự.");
+      isValid = false;
+    }
+
+    // Kiểm tra trùng email trước khi lưu
+    const existingData = localStorage.getItem("userData");
+    if (existingData) {
+      const parsedData = JSON.parse(existingData);
+      if (parsedData.email === email) {
+        alert("Email đã được đăng ký. Vui lòng sử dụng email khác.");
+        location.reload(); // Reset lại trang
+        return;
       }
+    }
 
-      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-      if (!emailRegex.test(email)) {
-        $("#emailError").text("Email không đúng định dạng.");
-        isValid = false;
-      }
+    if (isValid) {
+      const userData = { fullname, email, username, password };
+      localStorage.setItem("userData", JSON.stringify(userData));
 
-      if (username.length < 3) {
-        $("#usernameError").text("Tên đăng nhập phải từ 3 ký tự.");
-        isValid = false;
-      }
-
-      if (password.length < 6) {
-        $("#passwordError").text("Mật khẩu phải từ 6 ký tự.");
-        isValid = false;
-      }
-
-      if (isValid) {
-        const userData = { fullname, email, username, password };
-        localStorage.setItem("userData", JSON.stringify(userData));
-
-        $("#resFullname").text(fullname);
-        $("#resEmail").text(email);
-        $("#resUsername").text(username);
-        $("#registerForm").hide();
-        $("#result").fadeIn();
-      }
-    });
-  </script>
-  <script>
-    paymentForm.addEventListener("submit", function (event) {
-  event.preventDefault();
-
-  const enteredEmail = document.getElementById("email").value;
-  const storedEmail = localStorage.getItem("email");
-
-  if (enteredEmail === storedEmail) {
-    alert("Email đã được đăng ký và trùng với thông tin hiện tại. Vui lòng sử dụng email khác.");
-    location.reload(); // reset lại trang
-    return;
-  }
-
-  alert("Thanh toán thành công!");
-  // Ở đây có thể gửi dữ liệu lên server
-});
-  </script>
+      $("#resFullname").text(fullname);
+      $("#resEmail").text(email);
+      $("#resUsername").text(username);
+      $("#registerForm").hide();
+      $("#result").fadeIn();
+    }
+  });
+</script>
 </body>
 </html>
