@@ -49,6 +49,11 @@
         <input type="password" class="form-control" id="password" required>
         <div class="error" id="passwordError"></div>
       </div>
+      <div class="col-md-6">
+        <label for="confirmPassword" class="form-label">Xác nhận mật khẩu</label>
+        <input type="password" class="form-control" id="confirmPassword" required>
+        <div class="error" id="confirmPasswordError"></div>
+      </div>
       <div class="col-12">
         <button type="submit" class="btn btn-primary">Đăng ký</button>
         <br>
@@ -81,6 +86,7 @@
     const email = $("#email").val().trim();
     const username = $("#username").val().trim();
     const password = $("#password").val().trim();
+    const confirmPassword = $("#confirmPassword").val().trim();
 
     $(".error").text("");
 
@@ -102,6 +108,11 @@
 
     if (password.length < 6) {
       $("#passwordError").text("Mật khẩu phải từ 6 ký tự.");
+      isValid = false;
+    }
+
+    if (confirmPassword !== password) {
+      $("#confirmPasswordError").text("Mật khẩu xác nhận không khớp.");
       isValid = false;
     }
 
@@ -128,5 +139,6 @@
     }
   });
 </script>
+
 </body>
 </html>
